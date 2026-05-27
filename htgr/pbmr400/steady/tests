@@ -4,7 +4,7 @@
     type = RunApp
     input = 'oecd_pbmr400_ss0_rsnk_eigen_value_ix_dep.i'
     check_input = True
-    executable_pattern = 'griffin*|blue_crab*|dire_wolf*|fenix*'
+    capabilities = 'griffinapp | bluecrabapp | direwolfapp'
     cli_args = "MultiApps/active='' Transfers/active=''"
     capabilities = 'method=opt' # see Griffin #230
   []
@@ -12,14 +12,14 @@
     type = RunApp
     input = 'oecd_pbmr400_ss1_phtn_flow_path.i'
     check_input = True
-    executable_pattern = 'pronghorn*|blue_crab*|fenix*'
+    capabilities = 'pronghornapp | bluecrabapp'
     cli_args = "MultiApps/active='' Transfers/active=''"
   []
   [fuel_performance_syntax_only]
     type = RunApp
     input = 'oecd_pbmr400_ss2_mhtr_pebble_triso.i'
     check_input = True
-    executable_pattern = 'pronghorn*|blue_crab*|fenix*'
+    capabilities = 'pronghornapp | bluecrabapp'
     cli_args = 'Executioner/num_steps=1'
   []
 
@@ -29,7 +29,7 @@
     type = CSVDiff
     input = 'oecd_pbmr400_ss0_rsnk_eigen_value_ix_dep.i'
     csvdiff = 'oecd_pbmr400_ss0_rsnk_eigen_value_ix_dep.csv'
-    executable_pattern = 'griffin*|blue_crab*|dire_wolf*|fenix*'
+    capabilities = 'griffinapp | bluecrabapp | direwolfapp'
     cli_args = "MultiApps/active='' Transfers/active=''"
     # Temperatures are out of range for cross sections
     allow_warnings = true
@@ -38,7 +38,7 @@
     type = CSVDiff
     input = 'oecd_pbmr400_ss1_phtn_flow_path.i'
     csvdiff = 'oecd_pbmr400_ss1_phtn_flow_path.csv'
-    executable_pattern = 'pronghorn*|blue_crab*|fenix*'
+    capabilities = 'pronghornapp | bluecrabapp'
     cli_args = "MultiApps/active='' Transfers/active='' Executioner/num_steps=5"
     # Warning from a global param being set to a material not using it
     allow_warnings = true
@@ -47,7 +47,7 @@
     type = CSVDiff
     input = 'oecd_pbmr400_ss2_mhtr_pebble_triso.i'
     csvdiff = 'oecd_pbmr400_ss2_mhtr_pebble_triso.csv'
-    executable_pattern = 'pronghorn*|blue_crab*|fenix*'
+    capabilities = 'pronghornapp | bluecrabapp'
     cli_args = 'Executioner/num_steps=2 Outputs/csv=true'
   []
 
@@ -57,7 +57,7 @@
     working_directory = '../transient'
     input = 'oecd_pbmr400_tr0_pplofc_rsnk_keff_calc.i'
     check_input = True
-    executable_pattern = 'griffin*|blue_crab*|dire_wolf*|fenix*'
+    capabilities = 'griffinapp | bluecrabapp | direwolfapp'
     cli_args = "MultiApps/active='' Transfers/active=''"
     prereq = 'neutronics_only'
     capabilities = 'method=opt' # see Griffin #230
@@ -70,7 +70,7 @@
     working_directory = '../transient'
     input = 'oecd_pbmr400_tr1_pplofc_phtn_flow_path.i'
     check_input = True
-    executable_pattern = 'pronghorn*|blue_crab*|fenix*'
+    capabilities = 'pronghornapp | bluecrabapp'
     cli_args = "MultiApps/active='' Transfers/active=''"
     prereq = 'fluid_flow_only'
     # Warning from a global param being set to a material not using it
@@ -81,7 +81,7 @@
     working_directory = '../transient'
     input = 'oecd_pbmr400_tr2_pplofc_mhtr_pebble_triso.i'
     check_input = True
-    executable_pattern = 'pronghorn*|blue_crab*|fenix*'
+    capabilities = 'pronghornapp | bluecrabapp'
     cli_args = 'Executioner/num_steps=1'
   []
 
@@ -89,7 +89,7 @@
   [steady_multiphysics]
     type = RunApp
     input = 'oecd_pbmr400_ss0_rsnk_eigen_value_ix_dep.i'
-    executable_pattern = 'dire_wolf*|blue_crab*|fenix*'
+    capabilities = 'direwolfapp | bluecrabapp'
     cli_args = 'Executioner/fixed_point_max_its=1 MultiApps/th_sub/cli_args=Executioner/end_time=5 MultiApps/th_sub/max_procs_per_app=1'
     capabilities = 'method=opt' # too slow for devel
     min_parallel = 8
@@ -104,7 +104,7 @@
     working_directory = '../transient'
     input = 'oecd_pbmr400_tr0_pplofc_rsnk_keff_calc.i'
     csvdiff = 'core.csv'
-    executable_pattern = 'dire_wolf*|blue_crab*|fenix*'
+    capabilities = 'direwolfapp | bluecrabapp'
     # This is not a lot of iterations, because the model is too slow and because the convergence criteria
     # are set very loose which causes convergence issues on a second step
     cli_args = "Executioner/fixed_point_max_its=1 Executioner/num_steps=1 "
@@ -129,7 +129,7 @@
     working_directory = '../transient'
     input = 'oecd_pbmr400_tr0_pplofc_rsnk_keff_calc.i'
     csvdiff = 'oecd_pbmr400_tr0_pplofc_rsnk_keff_calc.csv'
-    executable_pattern = 'griffin*|blue_crab*|dire_wolf*|fenix*'
+    capabilities = 'griffinapp | bluecrabapp | direwolfapp'
     cli_args = "MultiApps/active='' Transfers/active='' Executioner/num_steps=2 "
                "Executioner/nl_rel_tol=1e-9 Executioner/nl_abs_tol=1e-10"
     capabilities = 'method=opt' # see Griffin #230
@@ -145,7 +145,7 @@
     working_directory = '../transient'
     input = 'oecd_pbmr400_tr1_pplofc_phtn_flow_path.i'
     csvdiff = 'oecd_pbmr400_tr1_pplofc_phtn_flow_path.csv'
-    executable_pattern = 'pronghorn*|blue_crab*|fenix*'
+    capabilities = 'pronghornapp | bluecrabapp'
     cli_args = "MultiApps/active='' Transfers/active='' Executioner/num_steps=5"
     prereq = 'fluid_flow_only transient_fluid_flow_syntax_only'
     # A global params is applied to an object parameter which returns a warning because
@@ -157,7 +157,7 @@
     working_directory = '../transient'
     input = 'oecd_pbmr400_tr2_pplofc_mhtr_pebble_triso.i'
     csvdiff = 'oecd_pbmr400_tr2_lf40_mhtr_pebble_triso.csv'
-    executable_pattern = 'pronghorn*|blue_crab*|fenix*'
+    capabilities = 'pronghornapp | bluecrabapp'
     cli_args = 'Executioner/num_steps=2 Outputs/csv=true'
     prereq = 'transient_fuel_performance_syntax_only'
   []

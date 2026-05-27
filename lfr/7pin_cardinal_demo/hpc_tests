@@ -6,7 +6,7 @@
     csvdiff = hpc_NT_out.csv
     cli_args = "Executioner/richardson_max_its=1 Executioner/fixed_point_max_its=2
                 Outputs/file_base=hpc_NT_out"
-    executable_pattern = 'cardinal*'
+    capabilities = 'cardinalapp'
     # Not going to run because Cardinal is not built with Griffin
     prereq = 'run_neutronics run_nekrs'
     min_parallel = 144
@@ -25,7 +25,7 @@
     min_parallel = 16
     # for devel testing
     max_time = 500
-    executable_pattern = 'griffin*'
+    capabilities = 'griffinapp'
     abs_zero = 1e-4
     rel_err = 2.1e-4
   []
@@ -39,13 +39,13 @@
                 Transfers/active='' MultiApps/active=''
                 Mesh/inactive='fmg'
                 Outputs/file_base=hpc_HC_out"
-    executable_pattern = 'cardinal*|moose*'
+    capabilities = 'cardinalapp | mooseapp'
     min_parallel = 8
   []
   [run_nekrs]
     type = RunApp
     input = 'nek.i'
-    executable_pattern = 'cardinal*'
+    capabilities = 'cardinalapp'
     min_parallel = 144
   []
 []
